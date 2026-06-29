@@ -34,8 +34,10 @@ Added TypeScript interface matching the backend `searchProducts` response format
 ### 4. Click-outside useEffect
 - Closes dropdown when clicking outside `productDropdownRef`
 
-### 5. `addProductToBill(product: Product)` function (line 1308-1331)
-Maps Product to POS Item:
+### 5. `addProductToBill(product: Product)` function (line 1494)
+Maps Product to POS Item. **First checks for duplicates** — if an item with the same `code` already exists in the bill, shows error toast `"{name} already exists in the bill"` and returns without adding.
+
+Mapping:
 - `code` ← `barcode || _id`
 - `name` ← `productName`
 - `qty` ← `1`
@@ -118,6 +120,7 @@ User clicks "+ Add New Product" → dropdown closes → modal opens
 - [ ] No results → "No products found" shown
 - [ ] Loading spinner shows while fetching
 - [ ] Tax calculated correctly for Include vs Exclude GST
+- [ ] Add same product twice → error toast "already exists in the bill", not added
 
 ### Add Product Modal
 - [ ] Click "+ Add New Product" → modal opens, dropdown closes
